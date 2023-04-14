@@ -3,6 +3,7 @@ package com.inblack67.springboot.rnd.controllers
 import com.inblack67.springboot.rnd.dtos.Course
 import com.inblack67.springboot.rnd.exceptions.CustomException
 import jakarta.validation.Valid
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -32,5 +33,11 @@ class CourseController {
     fun createCourse(@Valid @RequestBody course: Course): Boolean {
         courses.add(course)
         return true
+    }
+
+    // headers = ["X-API-Version=2"]
+    @GetMapping("/courses/v2", params = ["version=2"])
+    fun getCoursesV2(): List<Course> {
+        return emptyList()
     }
 }
